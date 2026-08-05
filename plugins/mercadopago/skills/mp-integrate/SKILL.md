@@ -138,6 +138,20 @@ For every dimension, attempt these resolution sources **in order**:
 
 **Concrete order of operations for the wizard (INFER FIRST, ASK LAST):**
 
+0. **Check for legacy Instore APIs in repo (before any question).** Run `Grep` for legacy QR/Point patterns:
+   - `/mpmobile/instore/qr` (QR Instore)
+   - `/instore/qr/seller/collectors` (QR Instore V2)
+   - `/instore/orders/qr/seller/collectors` (QR Dinámico)
+   - `/point/integration-api/devices/.*/payment-intents` (Point PDV + Self Service)
+
+   If any found AND the project is not already fully on `/v1/orders`, ask **once** via `AskUserQuestion`:
+   - header: `"Existing integration"`
+   - Question: *"I found an existing legacy Instore integration in your project at {file}:{line}. Before scaffolding, would you like to migrate it to the Orders API first?"*
+   - Options: `"Yes, migrate first (/mp-integrate migrate)"` / `"No, scaffold the new integration"`
+   - If "Yes" → stop and instruct: *"Run `/mp-integrate migrate` to migrate the existing integration, then come back to scaffold the new one."*
+   - If "No" → continue normally. Do NOT suggest migration again in this session.
+   - **Skip this check entirely** if `$ARGUMENTS` already contains `migrate`.
+
 1. **Check agent inference** — if the agent's Step 1.a resolved `product=` and/or `country=` from the developer's message, those dimensions are already resolved. Do NOT ask for them.
 2. Read `.mp-integrate-progress.md` if it exists — pull any previously-resolved values.
 3. **Do NOT grep for country.** Country is asked via `AskUserQuestion` unless already resolved by steps 1–2. No locale-string grep, no `mercadopago.com.<tld>` grep, no `currency_id` grep — they cost tokens and produce wrong matches.
@@ -165,7 +179,7 @@ Example block to render:
 ```
 I auto-detected the following from your repo:
 
-  ✓ App:    Villa mco (157134683642259) — from application_list
+  ✓ App:    My Store (123456789012345) — from application_list
   ✓ SDK:    node — from backend/package.json (mercadopago v2.12.0 already installed)
   ✓ Client: react — from frontend/package.json
 
@@ -258,7 +272,7 @@ Now I need a few details to scaffold the right integration:
 Right:
 
 ```
-✓ App: Villa mco (157134683642259) — from application_list
+✓ App: My Store (123456789012345) — from application_list
 ✓ SDK: node — from package.json
 (Country will be asked next — not auto-detected.)
 ```
@@ -283,7 +297,7 @@ Fields to persist (write after each is resolved, do not wait until the end):
 - client: react
 - lang: es
 - credential_type: test
-- application_id: 157134683642259
+- application_id: 123456789012345
 - brick: card-payment
 - qr_mode: dynamic
 - recurrent: no
