@@ -3,9 +3,6 @@ description: Report a bug or unexpected behavior.
 
 labels:
   - bug
-assignees:
-  - samhermeli
-  - edsonsilvestrebento
 
 title: "[BUG]"
 

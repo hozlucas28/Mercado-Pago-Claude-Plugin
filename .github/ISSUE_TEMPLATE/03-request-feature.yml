@@ -3,9 +3,6 @@ description: Request a new feature or improvement to the project.
 
 labels:
   - enhancement
-assignees:
-  - samhermeli
-  - edsonsilvestrebento
 
 title: "[RFC]"
 
