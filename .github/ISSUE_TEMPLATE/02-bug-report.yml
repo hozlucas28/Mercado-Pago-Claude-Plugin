@@ -33,7 +33,8 @@ body:
       required: true
 
   - id: relevant-material
-    type: upload
+    type: textarea
     attributes:
       label: Relevant material
-      description: Attach any logs, screenshots, or other evidence that may help us better understand the issue.
+      description: Attach any logs, screenshots, or other files that may help us better understand the issue.
+placeholder: ...
