@@ -4,9 +4,6 @@ description: Ask a question about the project or its usage.
 labels:
   - question
   - help wanted
-assignees:
-  - samhermeli
-  - edsonsilvestrebento
 
 title: "[QUESTION]"
 
