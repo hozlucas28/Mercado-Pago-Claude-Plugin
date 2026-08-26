@@ -9,7 +9,7 @@ title: "[BUG]"
 body:
   - type: markdown
     attributes:
-      value: Thank you for taking the time to report the error. Please complete the template below to the best of your ability and add a brief title to your report.
+      value: Thank you for taking the time to report the error. Please complete the template below to the best of your ability and add a brief title to your report. Caution! Don't include any sensitive information in your report, such as credentials, buyer data, or payment payloads.
 
   - id: what-happened
     type: textarea
@@ -37,4 +37,4 @@ body:
     attributes:
       label: Relevant material
       description: Attach any logs, screenshots, or other files that may help us better understand the issue.
-placeholder: ...
+      placeholder: ...

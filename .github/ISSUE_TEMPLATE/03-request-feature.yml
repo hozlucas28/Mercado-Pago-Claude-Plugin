@@ -9,7 +9,7 @@ title: "[RFC]"
 body:
   - type: markdown
     attributes:
-      value: Please complete the template below to the best of your ability and add a brief title to your request.
+      value: Please complete the template below to the best of your ability and add a brief title to your request. Caution! Don't include any sensitive information in your report, such as credentials, buyer data, or payment payloads.
 
   - id: feature-description
     type: textarea
@@ -41,4 +41,4 @@ body:
     attributes:
       label: Relevant material
       description: Attach any logs, screenshots, or other files that may help us better understand the request.
-placeholder: ...
+      placeholder: ...
